@@ -3,9 +3,11 @@
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
 #' @param distance_threshold The distance at which points can be considered a cluster (0.15 = default).
+#' @param distance_threshold The distance at which points can be considered inside a cluster (set to 1 for coutries with calibration points and set to 'number of covariables' for countries without calibration points)
+#' @param country_shapefile Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')
 #' @param significant_cluster_size Ignore clusters smaller than this number.
 #' @param legend_range Range of the legend (0 to legend_range). Guesstimate this based on size of country. Fine-tune with trial and error.
-#' @param legend_location Where sould the legend be plotted? 'topright', 'topleft', 'bottomright', 'bottomleft'. Fine-tune with trial and error.
+#' @param legend_location Where should the legend be plotted? 'topright', 'topleft', 'bottomright', 'bottomleft'. Fine-tune with trial and error.
 #' @import terra, fields, scales
 #' @returns A plot with the calibration curve stored in the 'results' folder.
 #' @examples
@@ -18,7 +20,9 @@
 # function to cluster covariable data in the aoi
 create_calibration_curve <- function(working_directory,
                                      aoi_name,
+                                     country_shapefile,
                                      distance_threshold,
+                                     within_threshold_distance,
                                      significant_cluster_size,
                                      legend_range,
                                      legend_location){
@@ -40,7 +44,7 @@ create_calibration_curve <- function(working_directory,
 
   ## get only the soilgrids properties
   scaled_calibration_data <- scaled_calibration_data[,c(4:ncol(scaled_calibration_data))]
-  distance_threshold_calc <- distance_threshold
+  distance_threshold_calc <- distance_threshold / within_threshold_distance
 
   ## get unique clusters and loop through them
   data_clusters <- unique(cluster_df$cluster_number)

@@ -7,7 +7,9 @@
 create_calibration_curve(
   working_directory,
   aoi_name,
+  country_shapefile,
   distance_threshold,
+  within_threshold_distance,
   significant_cluster_size,
   legend_range,
   legend_location
@@ -18,13 +20,15 @@ create_calibration_curve(
 
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
 
-\item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
+\item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')}
+
+\item{distance_threshold}{The distance at which points can be considered inside a cluster (set to 1 for coutries with calibration points and set to 'number of covariables' for countries without calibration points)}
 
 \item{significant_cluster_size}{Ignore clusters smaller than this number.}
 
 \item{legend_range}{Range of the legend (0 to legend_range). Guesstimate this based on size of country. Fine-tune with trial and error.}
 
-\item{legend_location}{Where sould the legend be plotted? 'topright', 'topleft', 'bottomright', 'bottomleft'. Fine-tune with trial and error.}
+\item{legend_location}{Where should the legend be plotted? 'topright', 'topleft', 'bottomright', 'bottomleft'. Fine-tune with trial and error.}
 }
 \value{
 A plot with the calibration curve stored in the 'results' folder.
