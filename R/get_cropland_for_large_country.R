@@ -58,7 +58,7 @@ get_cropland_for_large_country <- function(working_directory,
     # project cropland in AOI to base_raster
     cropland <- as.points(cropland, values=TRUE, na.rm=TRUE)
     cropland <- project(cropland, crs(base_raster))
-    base_raster <- crop(base_raster, cropland)
+    base_raster <- crop(base_raster, country)
     cropland <- rasterize(cropland, base_raster, fun=min)
     cropland <- cropland / cropland
 
