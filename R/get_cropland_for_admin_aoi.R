@@ -11,14 +11,14 @@
 #' @import terra
 #' @returns The to be calibrated area in for one or more administrative regions will be defined and reprojected to a standard raster.
 #' @examples
-#' get_cropland_for_aoi(working_directory = 'D:/calibration/data/projects',
-#'                      aoi_name = 'The_Netherlands',
-#'                      vito_landcover_raster = 'D:/calibration/data/rasters/data/vito_landcover_raster.tif',
-#'                      base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',
-#'                      country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
-#'                      target_regions = c('Gelderland', 'Utrecht'),
-#'                      complete_country = TRUE,
-#'                      cropland_only = TRUE)
+#' get_cropland_for_admin_aoi(working_directory = 'D:/calibration/data/projects',
+#'                            aoi_name = 'The_Netherlands',
+#'                            vito_landcover_raster = 'D:/calibration/data/rasters/data/vito_landcover_raster.tif',
+#'                            base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',
+#'                            country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
+#'                            target_regions = c('Gelderland', 'Utrecht'),
+#'                            complete_country = TRUE,
+#'                            cropland_only = TRUE)
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
