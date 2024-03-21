@@ -32,7 +32,7 @@ get_cropland_for_admin_aoi <- function(working_directory,
                                        cropland_only){
 
   # print status
-  print(paste0('Extracting cropland for: ', aoi_name))
+  print(paste0('Extracting AOI for: ', aoi_name))
 
   # load datasets
   country <- vect(country_shapefile) # load country shapefile
@@ -58,7 +58,7 @@ get_cropland_for_admin_aoi <- function(working_directory,
 
   # select only cropland according to landcover map
   if(cropland_only) {
-    print('Selecting only coprland area')
+    print('Selecting only cropland area')
     landcover[landcover != 40] <- 0
   } else {
     print('Selecting all landcover types')

@@ -26,7 +26,7 @@ get_cropland_for_manual_aoi <- function(working_directory,
                                         cropland_only){
 
   # print status
-  print(paste0('Extracting cropland for: ', aoi_name))
+  print(paste0('Extracting AOI for: ', aoi_name))
 
   # load datasets
   aoi <- vect(custom_aoi)
