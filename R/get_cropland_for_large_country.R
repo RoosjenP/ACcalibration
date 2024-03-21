@@ -36,7 +36,6 @@ get_cropland_for_large_country <- function(working_directory,
   # list all provinces in country shapefile
   provinces <- country$NAME_1
   files_to_remove <- NULL
-  target_area <- 0
 
   for(province in provinces){
 
@@ -63,9 +62,6 @@ get_cropland_for_large_country <- function(working_directory,
 
     cropland <- landcover/landcover
 
-    # calculate total area of cropland
-    target_area <- target_area + sum(expanse(cropland, unit="km"))
-
     # project cropland in AOI to base_raster
     cropland <- as.points(cropland, values=TRUE, na.rm=TRUE)
     cropland <- project(cropland, crs(base_raster))
@@ -84,19 +80,31 @@ get_cropland_for_large_country <- function(working_directory,
     files_to_remove <- c(files_to_remove, file_to_remove)
   }
 
+
+  # make SpatRasterCollection of temporary rasters
+  rsrc <- sprc(files_to_remove)
+
+  # merge raster list
+  m <- mosaic(rsrc)
+
   # remove temp files
   for(file_to_remove in files_to_remove){
     file.remove(file_to_remove)
   }
 
   # make cropland area file
-  target_area <- data.frame(target_area)
+  target_area <- data.frame(sum(expanse(m, unit="km")))
   names(target_area) <- 'area_km2'
   write.csv(target_area, file=paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '_area_km2.txt'), row.names=F)
 
   # write AOI to file
-  country_aoi <- aggregate(country, dissolve=TRUE)
   writeVector(country_aoi, paste0(working_directory, '/',  aoi_name, '/aoi/', aoi_name, '.kml'), overwrite=TRUE)
+
+  # write to cropland raster file
+  writeRaster(m,
+              file=paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.tif'),
+              datatype='INT1U',
+              overwrite=T)
 
   # print status
   print(paste0('Cropland mask is saved here: ', working_directory, '/',  aoi_name, '/aoi'))
