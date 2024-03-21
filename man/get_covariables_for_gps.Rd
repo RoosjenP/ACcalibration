@@ -4,10 +4,12 @@
 \alias{get_covariables_for_gps}
 \title{This takes the GPS locations of our current calibration points and extracts covariables for them.}
 \usage{
-get_covariables_for_gps(gps_directory, covar_directory)
+get_covariables_for_gps(gps_directory, gps_file, covar_directory)
 }
 \arguments{
-\item{gps_directory}{The directory where the GPS file ('gps.csv') is stored. The column names of the GPS file should be: 'SampleId',    'lat',    'lng'}
+\item{gps_directory}{The directory where the GPS file ('gps.csv') is stored.}
+
+\item{gps_file}{The name of the GPS file. The column names of the GPS file should be: 'SampleId', 'lat', 'lng'.}
 
 \item{covar_directory}{The folder where the covariable rasters are stored.}
 }
@@ -19,5 +21,6 @@ This takes the GPS locations of our current calibration points and extracts cova
 }
 \examples{
 get_covariables_for_gps(gps_directory = 'D:/calibration/data/calibration_points',
+                        gps_file = 'gps.csv',
                         covar_folder = 'D:/calibration/data/covariables/soil_grids_2.0')
 }

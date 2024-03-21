@@ -13,7 +13,8 @@
 #'                                aoi_name = 'The_Netherlands',
 #'                                vito_landcover_raster = 'D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif',
 #'                                base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',
-#'                                country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp')
+#'                                country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
+#'                                cropland_only = TRUE)
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
