@@ -15,7 +15,7 @@ get_covariables_for_gps <- function(gps_directory,
 
 
   ## read GPS of our current calibration points
-  gps <- read.csv(paste0(gps_directory, 'gps.csv'))
+  gps <- read.csv(paste0(gps_directory, '/gps.csv'))
   gps <- gps[complete.cases(gps),]
 
   # get lattitude & longitude, and sample IDs
