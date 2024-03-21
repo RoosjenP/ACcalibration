@@ -18,6 +18,6 @@ A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'c
 This function creates the folder structure for calibration requests
 }
 \examples{
-create_folder_structure(working_directory = 'C:/Users/peter/Documents',
+create_folder_structure(working_directory = 'D:/calibration/data/projects',
                         aoi_name = 'The_Netherlands')
 }

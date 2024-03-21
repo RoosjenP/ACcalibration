@@ -1,28 +1,29 @@
-#' This function defines the to be calibrated area for a custom drawn AOI
+#' This function defines the to be calibrated area for a manually drawn AOI
 #'
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
-#' @param vito_landcover_raster The 2019 VITO landcover raster ('C:/data/vito_landcover_raster.tif')
-#' @param base_raster_template Empty raster to reproject all data to ('C:/data/base_raster_template.tif')
+#' @param vito_landcover_raster The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif')
+#' @param base_raster_template Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif')
 #' @param custom_aoi A shapefile of a manually drawn AOI
 #' @param cropland_only should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE)
 #' @import terra
-#' @returns A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
+#' @returns The to be calibrated area in for a manually drawn AOI will be defined and reprojected to a standard raster.
 #' @examples
-#' get_cropland_for_aoi(working_directory = 'C:/Users/peter/Documents',
+#' get_cropland_for_aoi(working_directory = 'D:/calibration/data/projects',
 #'                      aoi_name = 'The_Netherlands',
-#'                      vito_landcover_raster = 'C:/data/vito_landcover_raster.tif',
-#'                      base_raster_template = 'C:/data/base_raster_template.tif',
-#'                      custom_aoi = 'C:/data/custom_aoi.shp',
+#'                      vito_landcover_raster = 'D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif',
+#'                      base_raster_template = 'D:/calibration/data/rasters/base_raster.tif',
+#'                      custom_aoi = 'D:/calibration/data/shapefiles/custom_shapefile.shp',
 #'                      cropland_only = TRUE)
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
-get_cropland_for_aoi <- function(working_directory,
-                                 aoi_name,
-                                 vito_landcover_raster,
-                                 base_raster_template,
-                                 custom_aoi){
+get_cropland_for_manual_aoi <- function(working_directory,
+                                        aoi_name,
+                                        vito_landcover_raster,
+                                        base_raster_template,
+                                        custom_aoi,
+                                        cropland_only){
 
   # print status
   print(paste0('Extracting cropland for: ', aoi_name))
@@ -37,7 +38,7 @@ get_cropland_for_aoi <- function(working_directory,
   landcover <- crop(x=landcover, y=aoi)
   landcover <- mask(landcover, aoi)
 
-  # select only cropland acooring to landcover map
+  # select only cropland according to landcover map
   if(cropland_only) {
     landcover[landcover != 40] <- 0
   }

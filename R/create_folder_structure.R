@@ -4,7 +4,7 @@
 #' @param aoi_name The folder where the folder calibration output will be stored.
 #' @returns A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
 #' @examples
-#' create_folder_structure(working_directory = 'C:/Users/peter/Documents',
+#' create_folder_structure(working_directory = 'D:/calibration/data/projects',
 #'                         aoi_name = 'The_Netherlands')
 
 

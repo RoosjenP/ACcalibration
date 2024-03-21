@@ -18,17 +18,17 @@ cluster_covariable_data(
 
 \item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
 
-\item{current_calibration_points}{The link to a GPS file of our current calibration points.}
+\item{current_calibration_points}{The link (path + filename) to the file of our current calibration points with their corresponding covariable data.}
 }
 \value{
-A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
+This function clusters the covariable data in the AOI based on the 'distance_threshold' and stores a table with clustered covariable data in the clustered-folder.
 }
 \description{
 This function clusters the covariable data in the aoi.
 }
 \examples{
-cluster_covariable_data(working_directory = 'C:/Users/peter/Documents',
+cluster_covariable_data(working_directory = 'D:/calibration/data/projects',
                         aoi_name = 'The_Netherlands',
                         distance_threshold = 0.15,
-                        current_calibration_points = 'C:/Users/peter/Documents/calibration_gps.csv')
+                        current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv')
 }

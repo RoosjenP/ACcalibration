@@ -2,31 +2,34 @@
 #'
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
-#' @param vito_landcover_raster The 2019 VITO landcover raster ('C:/data/vito_landcover_raster.tif')
-#' @param base_raster_template Empty raster to reproject all data to ('C:/data/base_raster_template.tif')
+#' @param vito_landcover_raster The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif')
+#' @param base_raster_template Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif')
 #' @param country_shapefile Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')
 #' @param target_regions A vector with names of target admin regions (e.g., c('Gelderland', 'Utrecht'))
-#' @param complete_country Process the complete county (T/F). If T: target_regions will be ignored, if F, target_regions will be processed only.
+#' @param complete_country Process the complete county (TRUE/FALSE). If TRUE: target_regions will be ignored, if FALSE, target_regions will be processed only.
+#' @param cropland_only should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE)
 #' @import terra
-#' @returns A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
+#' @returns The to be calibrated area in for one or more administrative regions will be defined and reprojected to a standard raster.
 #' @examples
-#' get_cropland_for_aoi(working_directory = 'C:/Users/peter/Documents',
+#' get_cropland_for_aoi(working_directory = 'D:/calibration/data/projects',
 #'                      aoi_name = 'The_Netherlands',
-#'                      vito_landcover_raster = 'C:/data/vito_landcover_raster.tif',
-#'                      base_raster_template = 'C:/data/base_raster_template.tif',
-#'                      country_shapefile = 'NLD_adm1.shp',
+#'                      vito_landcover_raster = 'D:/calibration/data/rasters/data/vito_landcover_raster.tif',
+#'                      base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',
+#'                      country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
 #'                      target_regions = c('Gelderland', 'Utrecht'),
-#'                      complete_country = TRUE)
+#'                      complete_country = TRUE,
+#'                      cropland_only = TRUE)
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
-get_cropland_for_aoi <- function(working_directory,
-                                 aoi_name,
-                                 vito_landcover_raster,
-                                 base_raster_template,
-                                 country_shapefile,
-                                 target_regions,
-                                 complete_country){
+get_cropland_for_admin_aoi <- function(working_directory,
+                                       aoi_name,
+                                       vito_landcover_raster,
+                                       base_raster_template,
+                                       country_shapefile,
+                                       target_regions,
+                                       complete_country,
+                                       cropland_only){
 
   # print status
   print(paste0('Extracting cropland for: ', aoi_name))
@@ -49,7 +52,12 @@ get_cropland_for_aoi <- function(working_directory,
   aoi <- project(aoi, crs(landcover))
   landcover <- crop(x=landcover, y=aoi)
   landcover <- mask(landcover, aoi)
-  landcover[landcover != 40] <- 0
+
+  # select only cropland according to landcover map
+  if(cropland_only) {
+    landcover[landcover != 40] <- 0
+  }
+
   cropland <- landcover/landcover
 
   # calculate total area of cropland

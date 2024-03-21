@@ -3,14 +3,14 @@
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
 #' @param distance_threshold The distance at which points can be considered a cluster (0.15 = default).
-#' @param current_calibration_points The link to a GPS file of our current calibration points.
-#' @returns A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
+#' @param current_calibration_points The link (path + filename) to the file of our current calibration points with their corresponding covariable data.
+#' @returns This function clusters the covariable data in the AOI based on the 'distance_threshold' and stores a table with clustered covariable data in the clustered-folder.
 #' @import fields, tibble, randomForest
 #' @examples
-#' cluster_covariable_data(working_directory = 'C:/Users/peter/Documents',
+#' cluster_covariable_data(working_directory = 'D:/calibration/data/projects',
 #'                         aoi_name = 'The_Netherlands',
 #'                         distance_threshold = 0.15,
-#'                         current_calibration_points = 'C:/Users/peter/Documents/calibration_gps.csv')
+#'                         current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv')
 
 
 # function to cluster covariable data in the aoi

@@ -11,7 +11,7 @@ extract_covariables_for_aoi(working_directory, aoi_name, covar_data_folder)
 
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
 
-\item{covar_data_folder}{The folder where the covariable rasters are stored}
+\item{covar_data_folder}{The folder where the covariable rasters are stored.}
 }
 \value{
 Stores a csv-file with covariables for all potential sampling locations.
@@ -20,7 +20,7 @@ Stores a csv-file with covariables for all potential sampling locations.
 This function extracts covariables for the cropland in an AOI
 }
 \examples{
-extract_covariables_for_aoi(working_directory = 'C:/Users/peter/Documents',
+extract_covariables_for_aoi(working_directory = 'D:/calibration/data/projects',
                             aoi_name = 'The_Netherlands',
-                            covar_data_folder = 'C:/covar_data')
+                            covar_data_folder = 'D:/calibration/data/covariables/soil_grids_2.0')
 }

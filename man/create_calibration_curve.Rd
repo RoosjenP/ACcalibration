@@ -22,7 +22,9 @@ create_calibration_curve(
 
 \item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')}
 
-\item{distance_threshold}{The distance at which points can be considered inside a cluster (set to 1 for coutries with calibration points and set to 'number of covariables' for countries without calibration points)}
+\item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
+
+\item{within_threshold_distance}{The distance at which points can be considered inside a cluster (set to 1 for countries with calibration points and set to 'number of covariables' for countries without calibration points)}
 
 \item{significant_cluster_size}{Ignore clusters smaller than this number.}
 
@@ -37,8 +39,13 @@ A plot with the calibration curve stored in the 'results' folder.
 This function creates a calibration curve based on the clustered covariable data.
 }
 \examples{
-create_calibration_curve(working_directory = 'C:/Users/peter/Documents',
+create_calibration_curve(working_directory = 'D:/calibration/data/projects',
                         aoi_name = 'The_Netherlands',
                         distance_threshold = 0.15,
-                        current_calibration_points = 'C:/Users/peter/Documents/calibration_gps.csv')
+                        country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
+                        distance_threshold = 0.15,
+                        within_threshold_distance = 1,
+                        significant_cluster_size = 3,
+                        legend_range = 100,
+                        legend_location = 'bottomleft')
 }
