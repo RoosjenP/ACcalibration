@@ -31,7 +31,7 @@ get_cropland_for_large_country <- function(working_directory,
   # load datasets
   country <- vect(country_shapefile) # load country shapefile
   landcover <- rast(vito_landcover_raster) # read landcover raster
-  base_raster <- rast(base_raster_template) # read base raster to reproject cropland to
+  landcover_copy <- landcover
 
   # list all provinces in country shapefile
   provinces <- country$NAME_1
@@ -44,8 +44,8 @@ get_cropland_for_large_country <- function(working_directory,
     aoi <- subset(country, country$NAME_1 == province)
 
     # crop the landcover raster by AOI and select only cropland (class=40)
-    aoi <- project(aoi, crs(landcover))
-    landcover <- crop(x=landcover, y=aoi)
+    aoi <- project(aoi, crs(landcover_copy))
+    landcover <- crop(x=landcover_copy, y=aoi)
     landcover <- mask(landcover, aoi)
 
     # select only cropland according to landcover map
@@ -56,6 +56,7 @@ get_cropland_for_large_country <- function(working_directory,
     cropland <- landcover/landcover
 
     # project cropland in AOI to base_raster
+    base_raster <- rast(base_raster_template) # read base raster to reproject cropland to
     cropland <- as.points(cropland, values=TRUE, na.rm=TRUE)
     cropland <- project(cropland, crs(base_raster))
     base_raster <- crop(base_raster, country)
