@@ -27,8 +27,8 @@ get_cropland_for_admin_aoi <- function(working_directory,
                                        vito_landcover_raster,
                                        base_raster_template,
                                        country_shapefile,
-                                       target_regions,
                                        complete_country,
+                                       target_regions,
                                        cropland_only){
 
   # print status
