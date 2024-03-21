@@ -1,21 +1,24 @@
 #' This takes the GPS locations of our current calibration points and extracts covariables for them.
 #'
-#' @param gps_directory The directory where the GPS file ('gps.csv') is stored. The column names of the GPS file should be: 'SampleId',	'lat',	'lng'
+#' @param gps_directory The directory where the GPS file ('gps.csv') is stored.
+#' @param gps_file The name of the GPS file. The column names of the GPS file should be: 'SampleId', 'lat', 'lng'.
 #' @param covar_directory The folder where the covariable rasters are stored.
 #' @returns A file called 'gps_covars.csv', which contain the GPS locations for of our calibration points and their corresponding covariables.
 #' @import terra, data.table
 #' @examples
 #' get_covariables_for_gps(gps_directory = 'D:/calibration/data/calibration_points',
+#'                         gps_file = 'gps.csv',
 #'                         covar_folder = 'D:/calibration/data/covariables/soil_grids_2.0')
 
 
 # function to create folder structure for calibration results
 get_covariables_for_gps <- function(gps_directory,
+                                    gps_file,
                                     covar_directory){
 
 
   ## read GPS of our current calibration points
-  gps <- read.csv(paste0(gps_directory, '/gps.csv'))
+  gps <- read.csv(paste0(gps_directory, '/', gps_file))
   gps <- gps[complete.cases(gps),]
 
   # get lattitude & longitude, and sample IDs
@@ -31,7 +34,7 @@ get_covariables_for_gps <- function(gps_directory,
   for(i in 1:length(covariable_layers)){
 
     # read covariable layer
-    print(paste0('Extracting covariables from: ' (covariable_layers[i])))
+    print(paste0('Extracting covariables from: ', (covariable_layers[i])))
     covariable_layer <- covariable_layers[i]
     covariable_raster <- rast(covariable_layer)
     layer_name <- basename(covariable_layers[i])
