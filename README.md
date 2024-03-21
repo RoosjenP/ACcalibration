@@ -29,7 +29,7 @@ working_directory <- 'C:/Users/peter/Documents'
 aoi_name <- 'The_Netherlands'
 
 # location of current calibration point data
-gps_directory = 'D:/calibration/data/calibration_points'
+gps_directory <- 'D:/calibration/data/calibration_points'
 covar_directory <- 'D:/calibration/data/covariables/soil_grids_2.0'
 
 # location of required data sets
