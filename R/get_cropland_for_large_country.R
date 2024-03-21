@@ -13,8 +13,7 @@
 #'                                aoi_name = 'The_Netherlands',
 #'                                vito_landcover_raster = 'D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif',
 #'                                base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',
-#'                                country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
-#'                                complete_country = TRUE)
+#'                                country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp')
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
@@ -42,13 +41,6 @@ get_cropland_for_large_country <- function(working_directory,
     # print progress
     print(paste0('Processing province: ', province))
     aoi <- subset(country, country$NAME_1 == province)
-
-    # subset if only regions need to be calibrated
-    if(complete_country){
-      aoi <- country
-    } else {
-      aoi <- subset(country, country$NAME_1 %in% target_regions)
-    }
 
     # crop the landcover raster by AOI and select only cropland (class=40)
     aoi <- project(aoi, crs(landcover))
@@ -98,7 +90,7 @@ get_cropland_for_large_country <- function(working_directory,
   write.csv(target_area, file=paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '_area_km2.txt'), row.names=F)
 
   # write AOI to file
-  writeVector(country_aoi, paste0(working_directory, '/',  aoi_name, '/aoi/', aoi_name, '.kml'), overwrite=TRUE)
+  writeVector(country, paste0(working_directory, '/',  aoi_name, '/aoi/', aoi_name, '.kml'), overwrite=TRUE)
 
   # write to cropland raster file
   writeRaster(m,
