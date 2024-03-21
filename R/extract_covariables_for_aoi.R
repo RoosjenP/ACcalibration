@@ -2,26 +2,26 @@
 #'
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
-#' @param covar_data_folder The folder where the covariable rasters are stored.
+#' @param covar_directory The folder where the covariable rasters are stored.
 #' @import terra, data.table
 #' @returns Stores a csv-file with covariables for all potential sampling locations.
 #' @examples
 #' extract_covariables_for_aoi(working_directory = 'D:/calibration/data/projects',
 #'                             aoi_name = 'The_Netherlands',
-#'                             covar_data_folder = 'D:/calibration/data/covariables/soil_grids_2.0')
+#'                             covar_directory = 'D:/calibration/data/covariables/soil_grids_2.0')
 
 
 # function extract covariables from aoi
 extract_covariables_for_aoi <- function(working_directory,
                                         aoi_name,
-                                        covar_data_folder){
+                                        covar_directory){
 
   # get coordinates of current AOI
   cropland <- rast(paste(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.tif', sep=''))
   xy <- crds(cropland, df=T)
 
   # list covariable data
-  covariable_layers <- list.files(path = covar_data_folder,
+  covariable_layers <- list.files(path = covar_directory,
                                   full.names = T,
                                   pattern = '.tif$')
 

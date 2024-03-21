@@ -9,12 +9,12 @@
 #' @import terra, fields
 #' @returns This function returns: 1) a .kml-file with the sampling locations named 1:n_samples, and 2) a raster with alternative sampling locations where each raster cell is numbered 1:n_samples.
 #' @examples
-#' get_cropland_for_aoi(working_directory = 'D:/calibration/data/projects',
-#'                      aoi_name = 'The_Netherlands',
-#'                      n_samples = 60,
-#'                      iter.max = 50,
-#'                      nstart = 10,
-#'                      algorithm = 'Lloyd')
+#' get_location_of_calibration_points_kmeans(working_directory = 'D:/calibration/data/projects',
+#'                                           aoi_name = 'The_Netherlands',
+#'                                           n_samples = 60,
+#'                                           iter.max = 50,
+#'                                           nstart = 10,
+#'                                           algorithm = 'Lloyd')
 
 
 get_location_of_calibration_points_kmeans <- function(working_directory,
