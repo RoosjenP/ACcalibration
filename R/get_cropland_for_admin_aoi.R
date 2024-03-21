@@ -42,9 +42,12 @@ get_cropland_for_admin_aoi <- function(working_directory,
 
   # subset if only regions need to be calibrated
   if(complete_country){
+    print('Processing the complete country')
     aoi <- country
   } else {
     aoi <- subset(country, country$NAME_1 %in% target_regions)
+    print('Processing these admin regions:')
+    print(target_regions)
   }
 
 
@@ -55,7 +58,10 @@ get_cropland_for_admin_aoi <- function(working_directory,
 
   # select only cropland according to landcover map
   if(cropland_only) {
+    print('Selecting only coprland area')
     landcover[landcover != 40] <- 0
+  } else {
+    print('Selecting all landcover types')
   }
 
   cropland <- landcover/landcover
