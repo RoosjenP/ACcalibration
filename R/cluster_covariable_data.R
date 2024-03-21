@@ -20,6 +20,9 @@ cluster_covariable_data <- function(working_directory,
                                     current_calibration_points){
 
 
+  # print status
+  print('Reading covariable data for AOI')
+
   # read covariable data and rename some columns
   dat <- read.csv(file=paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.csv'))
   xy <- dat[,c(2,3)]
@@ -36,6 +39,9 @@ cluster_covariable_data <- function(working_directory,
   calib <- calib[,c(4:ncol(calib))]
   colnames(calib) <- gsub('_15.30cm_mean', '', colnames(calib))
   colnames(calib) <- gsub('_0.30cm_mean', '', colnames(calib))
+
+  # print status
+  print('Normalizing covariable data in AOI based on covariable data at current calibration points')
 
   # get the minimum and maximum value of the current database per covariable
   minmax_min <- apply(calib,2,min)
@@ -59,6 +65,9 @@ cluster_covariable_data <- function(working_directory,
   set.seed(123)
   if(nrow(dat) < 50000){n_sample_points <- nrow(dat)} else (n_sample_points = 50000)
   rf_sub_data <- dat[sample(nrow(dat), n_sample_points), ]
+
+  # print status
+  print('Selecting a subset of data and custering to create a training dataset')
 
   # cluster subset
   set.seed(123)

@@ -55,10 +55,7 @@ get_cropland_for_large_country <- function(working_directory,
 
     # select only cropland according to landcover map
     if(cropland_only) {
-      print('Selecting only cropland area')
       landcover[landcover != 40] <- 0
-    } else {
-      print('Selecting all landcover types')
     }
 
     cropland <- landcover/landcover

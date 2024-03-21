@@ -112,6 +112,8 @@ create_calibration_curve <- function(working_directory,
   ## calculate some stats
   number_contributing_clusters <- length(unique(cluster_info_df$barcode))
 
+  print('plot')
+
   # plot
   png(file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, ' -- Calibration curve.png'),
       res=300,
@@ -124,7 +126,7 @@ create_calibration_curve <- function(working_directory,
   calibration_df <- data.frame(number_of_samples = c(1:length(calibration_percentage)),
                                calibration_percentage)
 
-  calibration_df$calibration_percentage <- rescale(calibration_df$calibration_percentage)
+  calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
 
   # plot(c(0:length(calibration_percentage)), c(0,calibration_percentage),
   plot(calibration_df$number_of_samples, calibration_df$calibration_percentage,
