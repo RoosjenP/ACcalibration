@@ -12,7 +12,7 @@ create_folder_structure(working_directory, aoi_name)
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
 }
 \value{
-A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', and 'results'.
+A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', 'results', 'calibration points'.
 }
 \description{
 This function creates the folder structure for calibration requests
