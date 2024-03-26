@@ -126,7 +126,10 @@ create_calibration_curve <- function(working_directory,
   calibration_df <- data.frame(number_of_samples = c(1:length(calibration_percentage)),
                                calibration_percentage)
 
-  calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
+
+  # calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
+
+  print('plot 1')
 
   # plot(c(0:length(calibration_percentage)), c(0,calibration_percentage),
   plot(calibration_df$number_of_samples, calibration_df$calibration_percentage,
@@ -139,6 +142,8 @@ create_calibration_curve <- function(working_directory,
        xlab='Number of calibration points',
        ylab='Percentage of calibrated area',
        main=paste0(aoi_name))
+
+  print('plot 2')
 
   axis(side = 1, pretty(c(1:length(calibration_percentage)), n = 10))
   abline(v=calib_thresh_0.8, col='gray40', lty=2)
@@ -155,6 +160,7 @@ create_calibration_curve <- function(working_directory,
   text(x=calib_thresh_0.99, y=0.03, calib_thresh_0.99, pos=4, col='gray40')
   abline(h=0)
 
+  print('plot 3')
 
   ## add plot of AOI
   plot(complete_country)
