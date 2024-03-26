@@ -9,7 +9,7 @@
 #' @import terra
 #' @returns The to be calibrated area in for a manually drawn AOI will be defined and reprojected to a standard raster.
 #' @examples
-#' get_cropland_for_manual_aoi(working_directory = 'D:/calibration/data/projects',
+#' get_cropland_for_custom_aoi(working_directory = 'D:/calibration/data/projects',
 #'                             aoi_name = 'The_Netherlands',
 #'                             vito_landcover_raster = 'D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif',
 #'                             base_raster_template = 'D:/calibration/data/rasters/base_raster.tif',
@@ -18,7 +18,7 @@
 
 
 # function to extract cropland in AOI and resample to soilgrids resolution
-get_cropland_for_manual_aoi <- function(working_directory,
+get_cropland_for_custom_aoi <- function(working_directory,
                                         aoi_name,
                                         vito_landcover_raster,
                                         base_raster_template,
