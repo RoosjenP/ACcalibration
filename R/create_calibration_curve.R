@@ -127,12 +127,12 @@ create_calibration_curve <- function(working_directory,
                                calibration_percentage)
 
 
-  # calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
+  calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
 
   print('plot 1')
 
   # plot(c(0:length(calibration_percentage)), c(0,calibration_percentage),
-  plot(calibration_df$number_of_samples, calibration_df$calibration_percentage,
+  base::plot(calibration_df$number_of_samples, calibration_df$calibration_percentage,
        ylim=c(0, 1),
        type='l',
        col='red',
@@ -170,7 +170,7 @@ create_calibration_curve <- function(working_directory,
   plot(aoi, add=T, lwd=0.5)
   plot(complete_adm, add=T, lwd=0.5)
   plot(complete_country, add=T)
-  # sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
+  sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
 
   dev.off()
 
