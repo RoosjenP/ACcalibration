@@ -77,10 +77,10 @@ get_location_of_calibration_points_kmeans <- function(working_directory,
   cluster_centers_aoi$cluster <- as.numeric(cluster_centers_aoi$cluster)
   clusters_vect <- vect(cluster_centers_aoi, geom=c('Longitude', 'Latitude'), crs='EPSG:4326', keepgeom=FALSE)
   writeVector(clusters_vect,
-              file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, '_calibration-points.kml'), # .kml or .shp
+              file=paste0(working_directory, '/', aoi_name, '/calibration points/', aoi_name, '_calibration-points.kml'), # .kml or .shp
               overwrite=TRUE)
 
-  # add clusters to coordiantes of pixels in AOI
+  # add clusters to coordinates of pixels in AOI
   aoi_coords$cluster <- myclusters$cluster
   aoi_coords$cluster <- as.numeric(aoi_coords$cluster)
 
@@ -90,7 +90,10 @@ get_location_of_calibration_points_kmeans <- function(working_directory,
 
   # write raster with clusters
   writeRaster(cluster_rast,
-              file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, '_calibration-raster.tif'),
+              file=paste0(working_directory, '/', aoi_name, '/calibration points/', aoi_name, '_calibration-raster.tif'),
               datatype=ifelse(n_samples < 255, 'INT1U', 'INT2U'),
               overwrite=T)
+
+  # print status
+  cat(paste0('The calibration points and calibration raster are stored here: \n: ', working_directory, '/', aoi_name, '/calibration points/'))
 }
