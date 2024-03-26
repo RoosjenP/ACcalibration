@@ -226,5 +226,5 @@ cluster_covariable_data <- function(working_directory,
   write.csv(data.frame(calib_barcode_xy, calib), file=paste0(working_directory, '/', aoi_name, '/clustered/', aoi_name, ' -- scaledCalibPoints=', distance_threshold, '.csv'), row.names=F)
 
   # print status
-  print(paste0('Clustered covariable data is saved here: ', working_directory, '/', aoi_name, '/clustered'))
+  cat(paste0('Clustered covariable data is saved here: \n', working_directory, '/', aoi_name, '/clustered'))
 }

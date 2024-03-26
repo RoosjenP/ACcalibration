@@ -106,5 +106,5 @@ get_cropland_for_large_country <- function(working_directory,
               overwrite=T)
 
   # print status
-  print(paste0('Cropland mask is saved here: ', working_directory, '/',  aoi_name, '/aoi'))
+  cat(paste0('Cropland mask is saved here: \n', working_directory, '/',  aoi_name, '/aoi'))
 }

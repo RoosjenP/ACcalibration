@@ -65,5 +65,5 @@ extract_covariables_for_aoi <- function(working_directory,
   write.csv(extracted_covariables, file=paste(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.csv', sep=''), row.names=F)
 
   # print status
-  print(paste0('Extracted covariables are saved here: ', working_directory, '/',  aoi_name, '/aoi'))
+  cat(paste0('Extracted covariables are saved here: \n', working_directory, '/',  aoi_name, '/aoi'))
 }

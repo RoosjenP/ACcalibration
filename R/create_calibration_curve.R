@@ -37,20 +37,6 @@ create_calibration_curve <- function(working_directory,
   complete_adm <- vect(country_shapefile)
   complete_country <- terra::aggregate(complete_adm, dissolve=T)
 
-  png(file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, ' -- Calibration curve.png'),
-      res=300,
-      width=3000,
-      height=1500)
-
-  print('hoi')
-  terra::plot(complete_adm)
-  print('doei')
-
-  dev.off()
-
-  # settings
-  stats_df <- NULL
-
   # read data
   aoi <- vect(paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.kml'))
   cropland <- rast(paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.tif'))
@@ -123,8 +109,6 @@ create_calibration_curve <- function(working_directory,
   ## calculate some stats
   number_contributing_clusters <- length(unique(cluster_info_df$barcode))
 
-  print('plot')
-
   # plot
   png(file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, ' -- Calibration curve.png'),
       res=300,
@@ -137,10 +121,8 @@ create_calibration_curve <- function(working_directory,
   calibration_df <- data.frame(number_of_samples = c(1:length(calibration_percentage)),
                                calibration_percentage)
 
-
+  # rescale data
   calibration_df$calibration_percentage <- scales::rescale(calibration_df$calibration_percentage)
-
-  print('plot 1')
 
   # plot(c(0:length(calibration_percentage)), c(0,calibration_percentage),
   base::plot(calibration_df$number_of_samples, calibration_df$calibration_percentage,
@@ -153,8 +135,6 @@ create_calibration_curve <- function(working_directory,
        xlab='Number of calibration points',
        ylab='Percentage of calibrated area',
        main=paste0(aoi_name))
-
-  print('plot 2')
 
   axis(side = 1, pretty(c(1:length(calibration_percentage)), n = 10))
   abline(v=calib_thresh_0.8, col='gray40', lty=2)
@@ -171,29 +151,18 @@ create_calibration_curve <- function(working_directory,
   text(x=calib_thresh_0.99, y=0.03, calib_thresh_0.99, pos=4, col='gray40')
   abline(h=0)
 
-  print('plot 3')
-
   ## add plot of AOI
-  base::plot(complete_country)
-  print('1')
-  base::plot(complete_adm, col='gray95', add=T, lwd=0.5)
-  print('2')
-  base::plot(aoi, col='Bisque', add=T, lwd=0.5)
-  print('3')
-  base::plot(cropland, add=T, col='red', legend=NULL)
-  print('4')
-  base::plot(aoi, add=T, lwd=0.5)
-  print('5')
-  base::plot(complete_adm, add=T, lwd=0.5)
-  print('6')
-  base::plot(complete_country, add=T)
-  print('7')
+  terra::plot(complete_country)
+  terra::plot(complete_adm, col='gray95', add=T, lwd=0.5)
+  terra::plot(aoi, col='Bisque', add=T, lwd=0.5)
+  terra::plot(cropland, add=T, col='red', legend=NULL)
+  terra::plot(aoi, add=T, lwd=0.5)
+  terra::plot(complete_adm, add=T, lwd=0.5)
+  terra::plot(complete_country, add=T)
   terra::sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
-
-  print('plot 4')
 
   dev.off()
 
   # print status
-  print(paste0('The Calibration curve is saved here: ', working_directory, '/', aoi_name, '/results'))
+  cat(paste0('The Calibration curve is saved here: \n', working_directory, '/', aoi_name, '/results'))
 }

@@ -18,5 +18,5 @@ create_folder_structure <- function(working_directory, aoi_name){
   dir.create(file.path(working_directory, aoi_name, 'results'), showWarnings = FALSE)
 
   # print status
-  print(paste0('Folders created here: ', working_directory))
+  cat(paste0('Folders created here: \n', working_directory))
 }

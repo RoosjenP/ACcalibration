@@ -59,5 +59,5 @@ get_covariables_for_gps <- function(gps_directory,
   write.csv(gps_covariables, file=paste0(gps_directory, '/gps_covars.csv'), row.names=F)
 
   # print status
-  print(paste0('A table with extracted covariables (gps_covars.csv) is stored here : ', gps_directory))
+  cat(paste0('A table with extracted covariables (gps_covars.csv) is stored here \n: ', gps_directory))
 }

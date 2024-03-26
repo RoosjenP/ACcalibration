@@ -73,5 +73,5 @@ get_cropland_for_manual_aoi <- function(working_directory,
   writeVector(aoi, paste0(working_directory, '/',  aoi_name, '/aoi/', aoi_name, '.kml'), overwrite=TRUE)
 
   # print status
-  print(paste0('Cropland mask is saved here: ', working_directory, '/',  aoi_name, '/aoi'))
+  cat(paste0('Cropland mask is saved here: \n', working_directory, '/',  aoi_name, '/aoi'))
 }
