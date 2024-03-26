@@ -53,7 +53,7 @@ get_location_of_calibration_points_kmeans <- function(working_directory,
   for(cluster in sort(unique(myclusters$cluster))){
 
     # print progress
-    print(paste0('Processing cluster ', cluster, ' of ', length(unique(myclusters$cluster))))
+    print(paste0('Processing point ', cluster, ' of ', length(unique(myclusters$cluster))))
 
     # select:
     cluster_data <- dat[which(dat2$cluster == cluster),] # all pixels within the cluster
@@ -95,5 +95,5 @@ get_location_of_calibration_points_kmeans <- function(working_directory,
               overwrite=T)
 
   # print status
-  cat(paste0('The calibration points and calibration raster are stored here: \n: ', working_directory, '/', aoi_name, '/calibration points/'))
+  cat(paste0('The calibration points and calibration raster are stored here: \n', working_directory, '/', aoi_name, '/calibration points'))
 }
