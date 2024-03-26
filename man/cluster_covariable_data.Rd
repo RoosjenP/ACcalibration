@@ -2,7 +2,7 @@
 % Please edit documentation in R/cluster_covariable_data.R
 \name{cluster_covariable_data}
 \alias{cluster_covariable_data}
-\title{This function clusters the covariable data in the aoi.}
+\title{This function clusters the covariable data in the AOI}
 \usage{
 cluster_covariable_data(
   working_directory,
@@ -24,7 +24,7 @@ cluster_covariable_data(
 This function clusters the covariable data in the AOI based on the 'distance_threshold' and stores a table with clustered covariable data in the clustered-folder.
 }
 \description{
-This function clusters the covariable data in the aoi.
+This function clusters the covariable data in the AOI
 }
 \examples{
 cluster_covariable_data(working_directory = 'D:/calibration/data/projects',

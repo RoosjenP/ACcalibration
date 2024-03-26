@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_cropland_for_custom_aoi.R
 \name{get_cropland_for_custom_aoi}
 \alias{get_cropland_for_custom_aoi}
-\title{This function defines the to be calibrated area for a manually drawn AOI}
+\title{This function defines the to-be-calibrated-area for a custom drawn AOI}
 \usage{
 get_cropland_for_custom_aoi(
   working_directory,
@@ -22,7 +22,7 @@ get_cropland_for_custom_aoi(
 
 \item{base_raster_template}{Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif')}
 
-\item{custom_aoi}{A shapefile of a manually drawn AOI}
+\item{custom_aoi}{A shapefile of a manually drawn AOI (D:/calibration/data/shapefiles/custom_shapefile.shp)}
 
 \item{cropland_only}{should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE)}
 }
@@ -30,7 +30,7 @@ get_cropland_for_custom_aoi(
 The to be calibrated area in for a manually drawn AOI will be defined and reprojected to a standard raster.
 }
 \description{
-This function defines the to be calibrated area for a manually drawn AOI
+This function defines the to-be-calibrated-area for a custom drawn AOI
 }
 \examples{
 get_cropland_for_custom_aoi(working_directory = 'D:/calibration/data/projects',

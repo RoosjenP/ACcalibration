@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_cropland_for_admin_aoi.R
 \name{get_cropland_for_admin_aoi}
 \alias{get_cropland_for_admin_aoi}
-\title{This function defines the to be calibrated area for administrative region}
+\title{This function defines the to-be-calibrated-area for one or more administrative regions}
 \usage{
 get_cropland_for_admin_aoi(
   working_directory,
@@ -20,23 +20,23 @@ get_cropland_for_admin_aoi(
 
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
 
-\item{vito_landcover_raster}{The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif')}
+\item{vito_landcover_raster}{The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif').}
 
-\item{base_raster_template}{Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif')}
+\item{base_raster_template}{Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif').}
 
-\item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')}
+\item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp').}
 
 \item{complete_country}{Process the complete county (TRUE/FALSE). If TRUE: target_regions will be ignored, if FALSE, target_regions will be processed only.}
 
-\item{target_regions}{A vector with names of target admin regions (e.g., c('Gelderland', 'Utrecht'))}
+\item{target_regions}{A vector with names of target admin regions (e.g., c('Gelderland', 'Utrecht')).}
 
-\item{cropland_only}{should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE)}
+\item{cropland_only}{should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE).}
 }
 \value{
 The to be calibrated area in for one or more administrative regions will be defined and reprojected to a standard raster.
 }
 \description{
-This function defines the to be calibrated area for administrative region
+This function defines the to-be-calibrated-area for one or more administrative regions
 }
 \examples{
 get_cropland_for_admin_aoi(working_directory = 'D:/calibration/data/projects',

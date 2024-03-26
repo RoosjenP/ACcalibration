@@ -1,9 +1,9 @@
-#' This takes the GPS locations of our current calibration points and extracts covariables for them.
+#' This takes the GPS locations of our current calibration points and extracts covariables for them
 #'
 #' @param gps_directory The directory where the GPS file ('gps.csv') is stored.
 #' @param gps_file The name of the GPS file. The column names of the GPS file should be: 'SampleId', 'lat', 'lng'.
 #' @param covar_directory The folder where the covariable rasters are stored.
-#' @returns A file called 'gps_covars.csv', which contain the GPS locations for of our calibration points and their corresponding covariables.
+#' @returns A file called 'gps_covars.csv', which contains the GPS locations for of our calibration points and their corresponding covariables.
 #' @import terra, data.table
 #' @examples
 #' get_covariables_for_gps(gps_directory = 'D:/calibration/data/calibration_points',

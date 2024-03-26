@@ -1,10 +1,10 @@
-#' This function uses kmeans clustering to calculate the the location for a number of calibration points in an AOI.
+#' This function uses kmeans clustering to calculate the the location for a number of calibration points in an AOI
 #'
 #' @param working_directory The directory where the folder calibration output is be stored. The previous steps of the calibration workflow have to be executed before running this.
 #' @param aoi_name The name of the AOI as defined in the beginning of the workflow.
 #' @param n_samples The number of calibration samples you want to collect in the AOI.
-#' @param iter.max setting for KMeans clustering: maximum number of iterations
-#' @param nstart setting for KMeans clustering: number of starts
+#' @param iter.max setting for KMeans clustering: maximum number of iterations.
+#' @param nstart setting for KMeans clustering: number of starts.
 #' @param algorithm setting for KMeans clustering: KMeans algorithm: choose one('Lloyd', 'Hartigan-Wong', 'Forgy', 'MacQueen').
 #' @import terra, fields
 #' @returns This function returns: 1) a .kml-file with the sampling locations named 1:n_samples, and 2) a raster with alternative sampling locations where each raster cell is numbered 1:n_samples.

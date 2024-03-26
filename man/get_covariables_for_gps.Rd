@@ -2,7 +2,7 @@
 % Please edit documentation in R/get_covariables_for_gps.R
 \name{get_covariables_for_gps}
 \alias{get_covariables_for_gps}
-\title{This takes the GPS locations of our current calibration points and extracts covariables for them.}
+\title{This takes the GPS locations of our current calibration points and extracts covariables for them}
 \usage{
 get_covariables_for_gps(gps_directory, gps_file, covar_directory)
 }
@@ -14,10 +14,10 @@ get_covariables_for_gps(gps_directory, gps_file, covar_directory)
 \item{covar_directory}{The folder where the covariable rasters are stored.}
 }
 \value{
-A file called 'gps_covars.csv', which contain the GPS locations for of our calibration points and their corresponding covariables.
+A file called 'gps_covars.csv', which contains the GPS locations for of our calibration points and their corresponding covariables.
 }
 \description{
-This takes the GPS locations of our current calibration points and extracts covariables for them.
+This takes the GPS locations of our current calibration points and extracts covariables for them
 }
 \examples{
 get_covariables_for_gps(gps_directory = 'D:/calibration/data/calibration_points',

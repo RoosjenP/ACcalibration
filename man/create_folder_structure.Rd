@@ -2,20 +2,20 @@
 % Please edit documentation in R/create_folder_structure.R
 \name{create_folder_structure}
 \alias{create_folder_structure}
-\title{This function creates the folder structure for calibration requests}
+\title{This function creates the folder structure to store all the results and intermediate data for a calibration project.}
 \usage{
 create_folder_structure(working_directory, aoi_name)
 }
 \arguments{
 \item{working_directory}{The directory where the folder calibration output will be stored. This directory should exist.}
 
-\item{aoi_name}{The folder where the folder calibration output will be stored.}
+\item{aoi_name}{The folder where the folder calibration outputs will be stored.}
 }
 \value{
 A folder called 'aoi_name' will be created with three folder in there: 'aoi', 'clustered', 'results', 'calibration points'.
 }
 \description{
-This function creates the folder structure for calibration requests
+This function creates the folder structure to store all the results and intermediate data for a calibration project.
 }
 \examples{
 create_folder_structure(working_directory = 'D:/calibration/data/projects',

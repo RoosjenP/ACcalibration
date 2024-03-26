@@ -2,7 +2,7 @@
 % Please edit documentation in R/create_calibration_curve.R
 \name{create_calibration_curve}
 \alias{create_calibration_curve}
-\title{This function creates a calibration curve based on the clustered covariable data.}
+\title{This function creates a calibration curve based on the clustered covariable data}
 \usage{
 create_calibration_curve(
   working_directory,
@@ -20,11 +20,11 @@ create_calibration_curve(
 
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
 
-\item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')}
+\item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp').}
 
 \item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
 
-\item{within_threshold_distance}{The distance at which points can be considered inside a cluster (set to 1 for countries with calibration points and set to 'number of covariables' for countries without calibration points)}
+\item{within_threshold_distance}{The distance at which points can be considered inside a cluster (set to 1 for countries with calibration points and set to 'number of covariables' (which is currently 11) for countries without calibration points).}
 
 \item{significant_cluster_size}{Ignore clusters smaller than this number.}
 
@@ -36,7 +36,7 @@ create_calibration_curve(
 A plot with the calibration curve stored in the 'results' folder.
 }
 \description{
-This function creates a calibration curve based on the clustered covariable data.
+This function creates a calibration curve based on the clustered covariable data
 }
 \examples{
 create_calibration_curve(working_directory = 'D:/calibration/data/projects',

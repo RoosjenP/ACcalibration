@@ -1,4 +1,4 @@
-#' This function clusters the covariable data in the aoi.
+#' This function clusters the covariable data in the AOI
 #'
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.

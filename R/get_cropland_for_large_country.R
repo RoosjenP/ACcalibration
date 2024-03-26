@@ -1,11 +1,11 @@
-#' This function defines the to be calibrated area for a large country
+#' This function defines the to-be-calibrated-area for a large country
 #'
 #' @param working_directory The directory where the folder calibration output will be stored. This directory should exist.
 #' @param aoi_name The folder where the folder calibration output will be stored.
-#' @param vito_landcover_raster The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif')
-#' @param base_raster_template Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif')
-#' @param country_shapefile Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp')
-#' @param cropland_only should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE)
+#' @param vito_landcover_raster The 2019 VITO landcover raster ('D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif').
+#' @param base_raster_template Empty raster to reproject all data to ('D:/calibration/data/rasters/base_raster.tif').
+#' @param country_shapefile Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp').
+#' @param cropland_only should all pixels in AOI be considered for calibration (set to FALSE), or only cropland pixels (set to TRUE).
 #' @import terra
 #' @returns The to be calibrated area in for a large country will be defined and reprojected to a standard raster.
 #' @examples
