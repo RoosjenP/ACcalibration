@@ -35,7 +35,16 @@ create_calibration_curve <- function(working_directory,
 
   # read shapefiles for plotting
   complete_adm <- vect(country_shapefile)
-  complete_country <- aggregate(complete_adm, dissolve=T)
+  complete_country <- terra::aggregate(complete_adm, dissolve=T)
+
+  png(file=paste0(working_directory, '/', aoi_name, '/results/', aoi_name, ' -- Calibration curve.png'),
+      res=300,
+      width=3000,
+      height=1500)
+
+  base::plot(complete_country)
+
+  dev.off()
 
   # settings
   stats_df <- NULL
