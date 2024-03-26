@@ -164,12 +164,19 @@ create_calibration_curve <- function(working_directory,
 
   ## add plot of AOI
   base::plot(complete_country)
+  print('1')
   base::plot(complete_adm, col='gray95', add=T, lwd=0.5)
+  print('2')
   base::plot(aoi, col='Bisque', add=T, lwd=0.5)
+  print('3')
   base::plot(cropland, add=T, col='red', legend=NULL)
+  print('4')
   base::plot(aoi, add=T, lwd=0.5)
+  print('5')
   base::plot(complete_adm, add=T, lwd=0.5)
+  print('6')
   base::plot(complete_country, add=T)
+  print('7')
   terra::sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
 
   print('plot 4')
