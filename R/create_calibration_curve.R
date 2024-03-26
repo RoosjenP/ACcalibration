@@ -170,7 +170,9 @@ create_calibration_curve <- function(working_directory,
   plot(aoi, add=T, lwd=0.5)
   plot(complete_adm, add=T, lwd=0.5)
   plot(complete_country, add=T)
-  sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
+  terra::sbar(d=legend_range, xy=legend_location, divs=4, type='bar', below="km")
+
+  print('plot 4')
 
   dev.off()
 
