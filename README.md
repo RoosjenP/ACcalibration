@@ -138,7 +138,7 @@ create_calibration_curve(working_directory = working_directory,
                          legend_location = legend_location)
 
 # step 6.
-# Once client agree upon a number of calibration samples, they can be determined with the following function:
+# Once client agrees upon a number of calibration samples, they can be determined with the following function:
 get_location_of_calibration_points_kmeans(working_directory = working_directory,
                                           aoi_name = aoi_name,
                                           n_samples = n_samples,
