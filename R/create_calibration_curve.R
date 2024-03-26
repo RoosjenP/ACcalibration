@@ -42,7 +42,7 @@ create_calibration_curve <- function(working_directory,
       width=3000,
       height=1500)
 
-  base::plot(complete_country)
+  base::plot(complete_adm)
 
   dev.off()
 
