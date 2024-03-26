@@ -20,17 +20,26 @@ install_github("RoosjenP/ACcalibration")
 This example shows the workflow for calibration of new areas:
 
 ``` r
+# calibration library
 library(ACcalibration)
+
+# other libraries
+library(terra)
+library(data.table)
+library(randomForest)
+library(tibble)
+library(fields)
+library(scales)
 
 #### define inputs ####
 
 # output directory and name for the 'project'
-working_directory <- 'C:/Users/peter/Documents' 
-aoi_name <- 'The_Netherlands'
+working_directory <- 'D:/calibration/projects'
+aoi_name <- 'The_Netherlands_custom'
 
 # location of current calibration point data
 gps_directory <- 'D:/calibration/data/calibration_points'
-gps_file <- 'gps.csv',
+gps_file <- 'gps.csv'
 covar_directory <- 'D:/calibration/data/covariables/soil_grids_2.0'
 
 # location of required data sets
@@ -38,12 +47,12 @@ vito_landcover_raster <- 'D:/calibration/data/rasters/PROBAV_LC100_global_v3.0.1
 base_raster_template <- 'D:/calibration/data/rasters/base_raster.tif'
 country_shapefile <- 'D:/calibration/data/admin_regions/NLD_adm1.shp'
 current_calibration_points <- 'D:/calibration/data/calibration_points/gps_covars.csv'
+custom_aoi <- 'D:/calibration/data/custom_aoi/NL_AOI.shp'
 
 
 # specific settings for AOI
+target_regions <- c('Gelderland', 'Utrecht')
 complete_country <- FALSE
-target_regions <- c('Gelderland', 'Utrecht', 'Groningen', 'Limburg', 'Zeeland', 'Overijssel')
-cropland_only <- TRUE
 
 # for clustering
 distance_threshold <- 0.15
@@ -55,11 +64,12 @@ significant_cluster_size <- 2
 # for plotting
 legend_range <- 100
 legend_location <- 'bottomleft'
+cropland_only <- TRUE
 
 # to determine location of calibration points (KMeans)
 n_samples <- 60
-iter.max <- 50
-nstart <- 10
+iter.max <- 5000
+nstart <- 100
 algorithm <- 'Lloyd'
 
 
@@ -68,6 +78,7 @@ algorithm <- 'Lloyd'
 # step 0.
 # First, the covariables corresponding to our current calibration points needs to be extracted. This script only needs to be ran once, and thereafter, only whenever new calibration points have been added to our database.The GPS coordinates of our calibration points should be stored in a .csv-file, with the following columns: 'SampleId',	'lat',	'lng' 
 get_covariables_for_gps(gps_directory = gps_directory,
+                        gps_file = gps_file,
                         covar_directory = covar_directory)
 
 # step 1.
@@ -87,7 +98,7 @@ get_cropland_for_admin_aoi(working_directory = working_directory,
                            cropland_only = cropland_only)
 
 # For calibration of a manually drawn AOI, use this:
-get_cropland_for_manual_aoi(working_directory = working_directory,
+get_cropland_for_custom_aoi(working_directory = working_directory,
                             aoi_name = aoi_name,
                             vito_landcover_raster = vito_landcover_raster,
                             base_raster_template = base_raster_template,
@@ -110,16 +121,18 @@ extract_covariables_for_aoi(working_directory = working_directory,
 
 # step 4.
 # Once the covariables have been extracted, they are clustered by a distance_threshold in feature space.
-cluster_covariable_data(working_directory = working_directory, 
+cluster_covariable_data(working_directory = working_directory,
                         aoi_name = aoi_name,
                         distance_threshold = distance_threshold,
                         current_calibration_points = current_calibration_points)
 
 # step 5.
 # after clustering, the calibrated clusters are determined, and a calibration curve is drawn.
-create_calibration_curve(working_directory = working_directory, 
+create_calibration_curve(working_directory = working_directory,
                          aoi_name = aoi_name,
+                         country_shapefile = country_shapefile,
                          distance_threshold = distance_threshold,
+                         within_threshold_distance = within_threshold_distance,
                          significant_cluster_size = significant_cluster_size,
                          legend_range = legend_range,
                          legend_location = legend_location)
