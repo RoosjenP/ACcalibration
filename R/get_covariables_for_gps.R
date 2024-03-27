@@ -21,7 +21,9 @@ get_covariables_for_gps <- function(gps_directory,
   gps <- read.csv(paste0(gps_directory, '/', gps_file))
   gps <- gps[complete.cases(gps),]
 
-  # get lattitude & longitude, and sample IDs
+  # get latitude & longitude, and sample IDs
+  coords <- data.frame(longitude=gps$lng,
+                       latitude=gps$lat)
   xy <- vect(gps, geom=c("lng", "lat"), crs="EPSG:4326")
   SampleId <- gps$SampleId
 
@@ -40,10 +42,10 @@ get_covariables_for_gps <- function(gps_directory,
     layer_name <- basename(covariable_layers[i])
 
     # extract covariable properties at all possible locations
-    extracted_covariable <- extract(covariable_raster, xy, xy=T)
+    extracted_covariable <- extract(covariable_raster, xy, xy=F)
 
     if(i == 1){
-      extracted_covariables <- extracted_covariable[,c(4,3,2)]
+      extracted_covariables <- data.frame(coords, extracted_covariable)
       colnames(extracted_covariables) <- c('latitude', 'longitude', layer_name)
     } else {
       extracted_covariables <- data.table(extracted_covariables, extracted_covariable[,2])
