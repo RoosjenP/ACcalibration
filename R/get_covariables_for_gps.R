@@ -48,7 +48,7 @@ get_covariables_for_gps <- function(gps_directory,
       extracted_covariables <- data.frame(coords, extracted_covariable)
       colnames(extracted_covariables) <- c('latitude', 'longitude', layer_name)
     } else {
-      extracted_covariables <- data.table(extracted_covariables, extracted_covariable[,2])
+      extracted_covariables <- data.table(extracted_covariables, extracted_covariable)
       colnames(extracted_covariables)[ncol(extracted_covariables)] <- layer_name
     }
   }
