@@ -48,8 +48,6 @@ create_threshold_raster <- function(working_directory,
   dat <- dat[,c(4:ncol(dat))]
   colnames(dat) <- gsub('_15_30_mean', '', colnames(dat))
   colnames(dat) <- gsub('_0_30_mean', '', colnames(dat))
-  colnames(dat) <- gsub('.tif', '', colnames(dat))
-  colnames(dat) <- gsub('sg_', '', colnames(dat))
 
   # read all data and fix column names
   calib <- read.csv(file=current_calibration_points) # extracted from full layers
