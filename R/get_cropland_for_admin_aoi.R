@@ -11,7 +11,7 @@
 #' @import terra
 #' @returns The to be calibrated area in for one or more administrative regions will be defined and reprojected to a standard raster.
 #' @examples
-#' get_cropland_for_admin_aoi(working_directory = 'D:/calibration/data/projects',
+#' get_cropland_for_admin_aoi(working_directory = 'D:/calibration/projects',
 #'                            aoi_name = 'The_Netherlands',
 #'                            vito_landcover_raster = 'D:/calibration/data/rasters/data/vito_landcover_raster.tif',
 #'                            base_raster_template = 'D:/calibration/data/rasters/base_raster_template.tif',

@@ -40,6 +40,7 @@ get_covariables_for_gps <- function(gps_directory,
     covariable_layer <- covariable_layers[i]
     covariable_raster <- rast(covariable_layer)
     layer_name <- basename(covariable_layers[i])
+    layer_name <- gsub('.tif', '', layer_name)
 
     # extract covariable properties at all possible locations
     extracted_covariable <- extract(covariable_raster, xy, xy=F, ID=F)
@@ -61,5 +62,5 @@ get_covariables_for_gps <- function(gps_directory,
   write.csv(gps_covariables, file=paste0(gps_directory, '/gps_covars.csv'), row.names=F)
 
   # print status
-  cat(paste0('A table with extracted covariables (gps_covars.csv) is stored here \n: ', gps_directory))
+  cat(paste0('A table with extracted covariables (gps_covars.csv) is stored here: \n', gps_directory))
 }

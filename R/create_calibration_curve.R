@@ -11,7 +11,7 @@
 #' @import terra, fields, scales
 #' @returns A plot with the calibration curve stored in the 'results' folder.
 #' @examples
-#' create_calibration_curve(working_directory = 'D:/calibration/data/projects',
+#' create_calibration_curve(working_directory = 'D:/calibration/projects',
 #'                         aoi_name = 'The_Netherlands',
 #'                         distance_threshold = 0.15,
 #'                         country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',

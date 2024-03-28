@@ -6,7 +6,7 @@
 #' @import terra, data.table
 #' @returns Stores a csv-file with covariables for all potential sampling locations.
 #' @examples
-#' extract_covariables_for_aoi(working_directory = 'D:/calibration/data/projects',
+#' extract_covariables_for_aoi(working_directory = 'D:/calibration/projects',
 #'                             aoi_name = 'The_Netherlands',
 #'                             covar_directory = 'D:/calibration/data/covariables/soil_grids_2.0')
 
@@ -36,6 +36,7 @@ extract_covariables_for_aoi <- function(working_directory,
     covariable_layer <- covariable_layers[i]
     covariable_raster <- rast(covariable_layer)
     layer_name <- basename(covariable_layers[i])
+    layer_name <- gsub('.tif', '', layer_name)
 
     # extract covariable properties at all possible locations
     extracted_covariable <- extract(covariable_raster, xy, xy=T)

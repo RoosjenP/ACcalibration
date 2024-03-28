@@ -33,7 +33,7 @@ This function returns: 1) a .kml-file with the sampling locations named 1:n_samp
 This function uses kmeans clustering to calculate the the location for a number of calibration points in an AOI
 }
 \examples{
-get_location_of_calibration_points_kmeans(working_directory = 'D:/calibration/data/projects',
+get_location_of_calibration_points_kmeans(working_directory = 'D:/calibration/projects',
                                           aoi_name = 'The_Netherlands',
                                           n_samples = 60,
                                           iter.max = 50,

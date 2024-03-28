@@ -27,7 +27,7 @@ This function clusters the covariable data in the AOI based on the 'distance_thr
 This function clusters the covariable data in the AOI
 }
 \examples{
-cluster_covariable_data(working_directory = 'D:/calibration/data/projects',
+cluster_covariable_data(working_directory = 'D:/calibration/projects',
                         aoi_name = 'The_Netherlands',
                         distance_threshold = 0.15,
                         current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv')

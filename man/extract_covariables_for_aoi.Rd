@@ -20,7 +20,7 @@ Stores a csv-file with covariables for all potential sampling locations.
 This function extracts covariables for the cropland in an AOI
 }
 \examples{
-extract_covariables_for_aoi(working_directory = 'D:/calibration/data/projects',
+extract_covariables_for_aoi(working_directory = 'D:/calibration/projects',
                             aoi_name = 'The_Netherlands',
                             covar_directory = 'D:/calibration/data/covariables/soil_grids_2.0')
 }

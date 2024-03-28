@@ -33,7 +33,7 @@ The to be calibrated area in for a manually drawn AOI will be defined and reproj
 This function defines the to-be-calibrated-area for a custom drawn AOI
 }
 \examples{
-get_cropland_for_custom_aoi(working_directory = 'D:/calibration/data/projects',
+get_cropland_for_custom_aoi(working_directory = 'D:/calibration/projects',
                             aoi_name = 'The_Netherlands',
                             vito_landcover_raster = 'D:/calibration/data/rasters/data/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif',
                             base_raster_template = 'D:/calibration/data/rasters/base_raster.tif',
