@@ -46,16 +46,16 @@ create_threshold_raster <- function(working_directory,
   dat <- read.csv(paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.csv'))
   xy <- dat[,c(2,3)]
   dat <- dat[,c(4:ncol(dat))]
-  colnames(dat) <- gsub('_15_30_mean', '', colnames(dat))
-  colnames(dat) <- gsub('_0_30_mean', '', colnames(dat))
+  # colnames(dat) <- gsub('_15.30cm_mean', '', colnames(dat))
+  # colnames(dat) <- gsub('_0.30cm_mean', '', colnames(dat))
 
   # read all data and fix column names
   calib <- read.csv(file=current_calibration_points) # extracted from full layers
   calib <- calib[complete.cases(calib),]
   calib_barcode_xy <- data.frame(calib[,c(1:3)])
   calib <- calib[,c(4:ncol(calib))]
-  colnames(calib) <- gsub('_15.30cm_mean', '', colnames(calib))
-  colnames(calib) <- gsub('_0.30cm_mean', '', colnames(calib))
+  # colnames(calib) <- gsub('_15.30cm_mean', '', colnames(calib))
+  # colnames(calib) <- gsub('_0.30cm_mean', '', colnames(calib))
 
   # calibration data and coords
   xy_calib <- data.frame(calib[,c(1:3)])
@@ -89,6 +89,10 @@ create_threshold_raster <- function(working_directory,
 
     cat('-')
     current_calib <- dat_calib[i,]
+
+    print(colnames(current_calib))
+    print(colnames(dat))
+
     distance <- t(fields::rdist(current_calib, dat))
     distances <- cbind(distance, distances)
 
