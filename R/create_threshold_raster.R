@@ -79,8 +79,8 @@ create_threshold_raster <- function(working_directory,
   dat_calib <- sweep(nom, 2, (min_max$max - min_max$min), '/')
 
   # scale data in aoi
-  nom <- sweep(dat_aoi, 2, min_max$min, '-')
-  dat_aoi <- sweep(nom, 2, (min_max$max - min_max$min), '/')
+  nom <- sweep(dat, 2, min_max$min, '-')
+  dat <- sweep(nom, 2, (min_max$max - min_max$min), '/')
 
   # loop through each calibration point
   n_calib <- nrow(dat_calib)
@@ -91,7 +91,7 @@ create_threshold_raster <- function(working_directory,
 
     cat('-')
     current_calib <- dat_calib[i,]
-    distance <- t(fields::rdist(current_calib, dat_aoi))
+    distance <- t(fields::rdist(current_calib, dat))
     distances <- cbind(distance, distances)
 
     if(i %% 10 == 0){
