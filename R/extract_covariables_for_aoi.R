@@ -55,7 +55,7 @@ extract_covariables_for_aoi <- function(working_directory,
   extracted_covariables$Latitude <- xy$y
 
   # find locations with erroneous data (e.g., where pH = 0)
-  extracted_covariables$`sg_phh2o_15-30cm_mean.tif` <- ifelse(extracted_covariables$`sg_phh2o_15-30cm_mean.tif` == 0, NA, extracted_covariables$`sg_phh2o_15-30cm_mean.tif`)
+  # extracted_covariables$`sg_phh2o_15-30cm_mean.tif` <- ifelse(extracted_covariables$`sg_phh2o_15-30cm_mean.tif` == 0, NA, extracted_covariables$`sg_phh2o_15-30cm_mean.tif`)
 
   # remove nodata add index
   extracted_covariables <- extracted_covariables[complete.cases(extracted_covariables),]
