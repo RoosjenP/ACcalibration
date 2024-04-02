@@ -27,18 +27,18 @@ cluster_covariable_data <- function(working_directory,
   dat <- read.csv(file=paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.csv'))
   xy <- dat[,c(2,3)]
   dat <- dat[,c(4:ncol(dat))]
-  colnames(dat) <- gsub('_15_30_mean', '', colnames(dat))
-  colnames(dat) <- gsub('_0_30_mean', '', colnames(dat))
-  colnames(dat) <- gsub('.tif', '', colnames(dat))
-  colnames(dat) <- gsub('sg_', '', colnames(dat))
+  # colnames(dat) <- gsub('_15_30_mean', '', colnames(dat))
+  # colnames(dat) <- gsub('_0_30_mean', '', colnames(dat))
+  # colnames(dat) <- gsub('.tif', '', colnames(dat))
+  # colnames(dat) <- gsub('sg_', '', colnames(dat))
 
   # read all data and fix column names
   calib <- read.csv(file=current_calibration_points) # extracted from full layers
   calib <- calib[complete.cases(calib),]
   calib_barcode_xy <- data.frame(calib[,c(1:3)])
   calib <- calib[,c(4:ncol(calib))]
-  colnames(calib) <- gsub('_15.30cm_mean', '', colnames(calib))
-  colnames(calib) <- gsub('_0.30cm_mean', '', colnames(calib))
+  # colnames(calib) <- gsub('_15.30cm_mean', '', colnames(calib))
+  # colnames(calib) <- gsub('_0.30cm_mean', '', colnames(calib))
 
   # print status
   print('Normalizing covariable data in AOI based on covariable data at current calibration points')
