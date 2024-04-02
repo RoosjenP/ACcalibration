@@ -7,7 +7,6 @@
 create_threshold_raster(
   working_directory,
   aoi_name,
-  country_code,
   distance_threshold,
   current_calibration_points,
   country_shapefile,
@@ -20,8 +19,6 @@ create_threshold_raster(
 \item{working_directory}{The directory where the folder calibration output will be stored. This directory should exist.}
 
 \item{aoi_name}{The folder where the folder calibration output will be stored.}
-
-\item{country_code}{The three-letter code of the code as we apply it, e.g.: The Netherlands = 'NLA', Kenya = 'KEA'. Case sensitive, so use capitols.}
 
 \item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
 
@@ -36,7 +33,7 @@ create_threshold_raster(
 \item{plot_heigth}{Plot heigth in pixels  for plotting of distance preview. Set in range between 2000 - 6000.}
 }
 \value{
-This creates a map of the AOI showing the distance in feature space with our calibration points. A raster and a preview of it will be returned.
+This creates a map of the AOI showing the distance in feature space with our calibration points. A raster and a preview of it will be returned. NOTE: this map can only be generated for countries countries that already have calibration points.
 }
 \description{
 This creates a map of the AOI showing the distance if feature space with our calibration points
