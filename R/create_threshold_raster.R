@@ -10,11 +10,12 @@
 #' @param plot_width Plot width in pixels for plotting of distance preview. Set in range between 2000 - 6000.
 #' @param plot_heigth Plot heigth in pixels  for plotting of distance preview. Set in range between 2000 - 6000.
 #' @returns This creates a map of the AOI showing the distance in feature space with our calibration points. A raster and a preview of it will be returned. When no calibration points are present in the target country, the closest in feature space will be used.
-#' @import terra
+#' @import terra, Rfast
 #' @examples
 #' create_threshold_raster(working_directory = 'D:/calibration/projects',
 #'                         aoi_name = 'The_Netherlands',
 #'                         distance_threshold = 0.15,
+#'                         n_selected_pixels = 5000,
 #'                         current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv',
 #'                         country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
 #'                         plot_resolution = 300,
@@ -131,7 +132,7 @@ create_threshold_raster <- function(working_directory,
   # loop through each calibration point
   n_calib <- nrow(dat_calib)
   distances <- NULL
-  print(paste0('Calculating distances between calibration points and pixels in AOI for: ', country_code))
+  print(paste0('Calculating distances between calibration points and pixels in AOI for: ', aoi_name))
 
   for(i in 1:n_calib){
 
