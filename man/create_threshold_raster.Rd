@@ -8,6 +8,7 @@ create_threshold_raster(
   working_directory,
   aoi_name,
   distance_threshold,
+  n_selected_pixels,
   current_calibration_points,
   country_shapefile,
   plot_resolution,
@@ -22,6 +23,8 @@ create_threshold_raster(
 
 \item{distance_threshold}{The distance at which points can be considered a cluster (0.15 = default).}
 
+\item{n_selected_pixels}{The number of pixels to take in the AOI to calculate closest calibration points (default = 5000).}
+
 \item{current_calibration_points}{The link (path + filename) to the file of our current calibration points with their corresponding covariable data.}
 
 \item{country_shapefile}{Name of the admin_1 level of the country shapefile (e.g., 'NLD_adm1.shp').}
@@ -33,7 +36,7 @@ create_threshold_raster(
 \item{plot_heigth}{Plot heigth in pixels  for plotting of distance preview. Set in range between 2000 - 6000.}
 }
 \value{
-This creates a map of the AOI showing the distance in feature space with our calibration points. A raster and a preview of it will be returned. NOTE: this map can only be generated for countries countries that already have calibration points.
+This creates a map of the AOI showing the distance in feature space with our calibration points. A raster and a preview of it will be returned. When no calibration points are present in the target country, the closest in feature space will be used.
 }
 \description{
 This creates a map of the AOI showing the distance if feature space with our calibration points
@@ -41,7 +44,6 @@ This creates a map of the AOI showing the distance if feature space with our cal
 \examples{
 create_threshold_raster(working_directory = 'D:/calibration/projects',
                         aoi_name = 'The_Netherlands',
-                        country_code = 'NLA',
                         distance_threshold = 0.15,
                         current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv',
                         country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
