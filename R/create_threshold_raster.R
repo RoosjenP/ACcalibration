@@ -179,9 +179,11 @@ create_threshold_raster <- function(working_directory,
 
   colfunc <- colorRampPalette(c("darkgreen",  "lightgreen", 'white'))
 
+  terra::plot(complete_country,
+              main=paste0(aoi_name, 'd = ', distance_threshold))
   terra::plot(aoi_dist_ras_in,
               col=colfunc(10),
-              main=paste0(aoi_name, ' - [', distance_threshold, ']'))
+              add=T)
   terra::plot(aoi_dist_ras_out, add=T, col='red', legend=NULL)
   terra::plot(complete_adm, add=T)
   terra::plot(complete_country, add=T, lwd=2)
