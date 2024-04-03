@@ -154,7 +154,8 @@ create_threshold_raster <- function(working_directory,
 
   # print to finish
   cat(paste0(n_calib, ' of ', n_calib, '\n'))
-  print('Done. Creating raster distances rasters.')
+  print('Done')
+  print('Rasterizing and plotting distances.')
 
   # create raster
   df <- data.frame(xy_aoi, distances)
@@ -178,11 +179,10 @@ create_threshold_raster <- function(working_directory,
 
   colfunc <- colorRampPalette(c("darkgreen",  "lightgreen", 'white'))
 
-  terra::plot(complete_country,
-              main=paste0(aoi_name, ' [d = ', distance_threshold, ']'))
   terra::plot(aoi_dist_ras_in,
               col=colfunc(10),
-              add=T)
+              main=paste0(aoi_name, ' [d = ', distance_threshold, ']'),
+              ext=ext(complete_country))
   terra::plot(aoi_dist_ras_out, add=T, col='red', legend=NULL)
   terra::plot(complete_adm, add=T)
   terra::plot(complete_country, add=T, lwd=2)
