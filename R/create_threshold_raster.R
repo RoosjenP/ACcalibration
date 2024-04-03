@@ -41,7 +41,6 @@ create_threshold_raster <- function(working_directory,
   # read admin shapefile
   complete_adm <- vect(country_shapefile)
   complete_country <- terra::aggregate(complete_adm, dissolve=T)
-  complete_country <- terra::vect('C:/Users/peter/OneDrive - SPRINGG/Projects/R/Argentina/data/shapefiles/ARG_adm0.shp')
 
   # read covariable data and rename some columns
   dat <- read.csv(paste0(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.csv'))
@@ -180,7 +179,7 @@ create_threshold_raster <- function(working_directory,
   colfunc <- colorRampPalette(c("darkgreen",  "lightgreen", 'white'))
 
   terra::plot(complete_country,
-              main=paste0(aoi_name, 'd = ', distance_threshold))
+              main=paste0(aoi_name, ' [d = ', distance_threshold, ']'))
   terra::plot(aoi_dist_ras_in,
               col=colfunc(10),
               add=T)
