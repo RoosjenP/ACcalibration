@@ -16,6 +16,7 @@ extract_covariables_for_aoi <- function(working_directory,
                                         aoi_name,
                                         covar_directory){
 
+
   # get coordinates of current AOI
   cropland <- rast(paste(working_directory, '/', aoi_name, '/aoi/', aoi_name, '.tif', sep=''))
   xy <- crds(cropland, df=T)
@@ -54,8 +55,24 @@ extract_covariables_for_aoi <- function(working_directory,
   extracted_covariables$Longitude <- xy$x
   extracted_covariables$Latitude <- xy$y
 
-  # find locations with erroneous data (e.g., where pH = 0)
-  # extracted_covariables$`sg_phh2o_15-30cm_mean.tif` <- ifelse(extracted_covariables$`sg_phh2o_15-30cm_mean.tif` == 0, NA, extracted_covariables$`sg_phh2o_15-30cm_mean.tif`)
+  n_covars <- c(3:ncol(extracted_covariables))
+  extracted_covariables_data <- extracted_covariables[, ..n_covars]
+
+  # remove pixels where only zeros are extracted
+  print('removing pixel where only zeros are extracted..')
+  row_sums <- rowSums(extracted_covariables_data, na.rm=T)
+  i <- 0
+  for(row_sum in row_sums){
+    i <- i + 1
+    if(row_sum == 0){
+      extracted_covariables_data[i, ][extracted_covariables_data[i, ] == 0] <- NA
+    }
+
+  }
+
+  # combine again
+  extracted_covariables_xy <- extracted_covariables[, c(1,2)]
+  extracted_covariables <- data.table(extracted_covariables_xy, extracted_covariables_data)
 
   # remove nodata add index
   extracted_covariables <- extracted_covariables[complete.cases(extracted_covariables),]
