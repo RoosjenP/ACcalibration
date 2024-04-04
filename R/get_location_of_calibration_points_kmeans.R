@@ -77,7 +77,7 @@ get_location_of_calibration_points_kmeans <- function(working_directory,
   cluster_centers_aoi$cluster <- as.numeric(cluster_centers_aoi$cluster)
   clusters_vect <- vect(cluster_centers_aoi, geom=c('Longitude', 'Latitude'), crs='EPSG:4326', keepgeom=FALSE)
   writeVector(clusters_vect,
-              file=paste0(working_directory, '/', aoi_name, '/calibration points/', aoi_name, '_calibration-points.kml'), # .kml or .shp
+              file=paste0(working_directory, '/', aoi_name, '/calibration points/', aoi_name, '_calibration-points.shp'), # .kml or .shp
               overwrite=TRUE)
 
   # add clusters to coordinates of pixels in AOI
