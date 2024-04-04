@@ -58,24 +58,6 @@ extract_covariables_for_aoi <- function(working_directory,
   # set all extracted zero's to NA
   extracted_covariables[extracted_covariables == 0] <- NA
 
-  # n_covars <- c(3:ncol(extracted_covariables))
-  # extracted_covariables_data <- extracted_covariables[, ..n_covars]
-  #
-  # # remove pixels where only zeros are extracted
-  # print('removing pixel where only zeros are extracted..')
-  # row_sums <- rowSums(extracted_covariables_data, na.rm=T)
-  # i <- 0
-  # for(row_sum in row_sums){
-  #   i <- i + 1
-  #   if(row_sum == 0){
-  #     extracted_covariables_data[i, ][extracted_covariables_data[i, ] == 0] <- NA
-  #   }
-  # }
-#
-#   # combine again
-#   extracted_covariables_xy <- extracted_covariables[, c(1,2)]
-#   extracted_covariables <- data.table(extracted_covariables_xy, extracted_covariables_data)
-
   # remove nodata add index
   extracted_covariables <- extracted_covariables[complete.cases(extracted_covariables),]
   idx <- c(1:nrow(extracted_covariables))
