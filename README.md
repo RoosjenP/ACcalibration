@@ -20,6 +20,10 @@ install_github("RoosjenP/ACcalibration")
 This example shows the workflow for calibration of new areas:
 
 ``` r
+# install calibration library from github
+library(devtools)
+install_github("RoosjenP/ACcalibration")
+
 # calibration library
 library(ACcalibration)
 
@@ -56,8 +60,8 @@ get_covariables_for_gps(gps_directory = gps_directory,
 #############
 
 # inputs
-working_directory <- 'D:/calibration/projects' # directory where to store the calibarion project
-aoi_name <- 'Switzerland'                      # name to give to the project (same name will be used as title of plot results)
+working_directory <- 'D:/calibration/projects' # directory where to store the calibration project
+aoi_name <- 'Senegal_Louga'                    # name to give to the project (same name will be used as title of plot results)
 
 # Per calibration project, we create a folder with a name for the project ('aoi_name'). In this folder, three sub-folder are created ('aoi', 'clustered', 'results'). These folders will be populated in the following steps of the workflow.
 create_folder_structure(working_directory = working_directory,
@@ -67,8 +71,8 @@ create_folder_structure(working_directory = working_directory,
 # inputs
 vito_landcover_raster <- 'D:/calibration/data/rasters/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif' # VITO landcover map
 base_raster_template <- 'D:/calibration/data/rasters/base_raster.tif' # base raster to reproject all data to
-country_shapefile <- 'D:/calibration/data/admin_regions/CHE_adm1.shp' # shapefile of country downloaded from: https://www.diva-gis.org/gdata
-target_regions <- c('', '')                                           # name of the target provinces (under NAME_1 in the country shapefile)
+country_shapefile <- 'D:/calibration/data/admin_regions/SEN_adm1.shp' # shapefile of country downloaded from: https://www.diva-gis.org/gdata
+target_regions <- c('Louga')                                          # name of the target provinces (under NAME_1 in the country shapefile)
 complete_country <- FALSE                                             # process the complete country (TRUE/FALSE). This ignores target regions
 cropland_only <- TRUE                                                 # process only cropland pixels: TRUE, processes all pixels: FALSE
 
@@ -101,7 +105,6 @@ get_cropland_for_custom_aoi(working_directory = working_directory,
 # inputs
 vito_landcover_raster <- 'D:/calibration/data/rasters/PROBAV_LC100_global_v3.0.1_2019-nrt_Discrete-Classification-map_EPSG-4326.tif' # VITO landcover map
 base_raster_template <- 'D:/calibration/data/rasters/base_raster.tif' # base raster to reproject all data to
-country_shapefile <- 'D:/calibration/data/admin_regions/CHE_adm1.shp' # shapefile of country downloaded from: https://www.diva-gis.org/gdata
 cropland_only <- TRUE                                                 # process only cropland pixels: TRUE, processes all pixels: FALSE
 
 # For calibration of a large country, use this:
@@ -114,7 +117,7 @@ get_cropland_for_large_country(working_directory = working_directory,
 
 
 # inputs
-covar_directory <- 'D:/calibration/data/covariables/soil_grids_2.0' # directory where co variables are stored
+covar_directory <- covar_directory
 
 # step 3.
 # after we have determined the AOI, the covariables are extracted for it:
@@ -139,7 +142,7 @@ cluster_covariable_data(working_directory = working_directory,
 
 
 # inputs
-within_threshold_distance <- 1  # within which distance is a point considered calibrated? Use 1 for countries with calibration points (nearby) and number_of_covariables for countries without.
+within_threshold_distance <- 11 # within which distance is a point considered calibrated? Use 1 for countries with calibration points (nearby) and number_of_covariables for countries without.
 significant_cluster_size <- 2   # remove clusters with this amount of pixels
 legend_range <- 100             # maximum range of legend (for plotting)
 legend_location <- 'bottomleft' # where the legend will be plotted

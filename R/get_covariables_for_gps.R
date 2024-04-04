@@ -58,6 +58,10 @@ get_covariables_for_gps <- function(gps_directory,
   gps_covariables <- data.table(SampleId=SampleId,
                                 extracted_covariables)
 
+  # set all extracted zero's to NA
+  gps_covariables[gps_covariables == 0] <- NA
+  gps_covariables <- gps_covariables[complete.cases(gps_covariables),]
+
   # write to file
   write.csv(gps_covariables, file=paste0(gps_directory, '/gps_covars.csv'), row.names=F)
 
