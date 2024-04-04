@@ -80,7 +80,7 @@ create_threshold_raster <- function(working_directory,
   if(length(country_calibration_points) != 0){
 
     #print status
-    print(paste0(length(country_calibration_points, ' calibration points found in target country')))
+    print(paste0(length(country_calibration_points), ' calibration points found in target country'))
 
           # get barcodes
           barcode_country_calibration_points <- country_calibration_points$SampleId
