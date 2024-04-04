@@ -45,6 +45,7 @@ This creates a map of the AOI showing the distance if feature space with our cal
 create_threshold_raster(working_directory = 'D:/calibration/projects',
                         aoi_name = 'The_Netherlands',
                         distance_threshold = 0.15,
+                        n_selected_pixels = 5000,
                         current_calibration_points = 'D:/calibration/data/calibration_points/gps_covars.csv',
                         country_shapefile = 'D:/calibration/data/admin_regions/NLD_adm1.shp',
                         plot_resolution = 300,

@@ -177,19 +177,22 @@ create_threshold_raster <- function(working_directory,
       width=plot_width,
       height=plot_heigth)
 
+  # create color schema
   colfunc <- colorRampPalette(c("darkgreen",  "lightgreen", 'white'))
 
+  # set extent for complete country
+  ext <- terra::ext(complete_country, 20000)
+
+  # plot
   terra::plot(aoi_dist_ras_in,
               col=colfunc(10),
               main=paste0(aoi_name, ' [d = ', distance_threshold, ']'),
-              ext=ext(terra::buffer(complete_country, 20000)))
+              ext=ext)
   terra::plot(aoi_dist_ras_out, add=T, col='red', legend=NULL)
   terra::plot(complete_adm, add=T)
   terra::plot(complete_country, add=T, lwd=2)
   terra::points(xy_calib$longitude, xy_calib$latitude,
                 pch = 21, cex=0.5, col="black", bg="yellow")
-
-
   dev.off()
 
   # write distance raster
